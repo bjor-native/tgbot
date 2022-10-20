@@ -2,7 +2,7 @@ package api
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 	"time"
@@ -40,7 +40,7 @@ func GetCovidStatistic(value string) string {
 		return "covid-19 API not responding"
 	}
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	covid := CovidSummary{}
 
 	err = json.Unmarshal(body, &covid)

@@ -7,6 +7,7 @@ import (
 
 	getInfoCovid "tgbot/api/covidSummaryAPI"
 	getJoke "tgbot/api/jokesAPI"
+	config "tgbot/utils"
 )
 
 var (
@@ -23,7 +24,9 @@ func main() {
 }
 
 func tgbot() {
-	bot, err := tgbotapi.NewBotAPI("1260532628:AAGow6iiMxajILFi78Yg3hr4RbCtwvZ1muM")
+	conf := config.GetConfig()
+
+	bot, err := tgbotapi.NewBotAPI(conf.ApiKey)
 	if err != nil {
 		log.Panic(err)
 	}
